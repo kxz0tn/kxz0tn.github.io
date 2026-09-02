@@ -254,19 +254,26 @@
 
     #pline {
       display: flex;
-      align-items: flex-start;
-      gap: 0.55rem;
+      flex-direction: row;
+      align-items: center;
+      gap: 0;
       margin: 0.75em 0 0;
       position: relative;
     }
-    #pline .ps { flex: 0 0 auto; padding-top: 0; line-height: 1.45; }
-    .live {
-      flex: 1 1 auto;
-      min-width: 0;
-      position: relative;
-      min-height: 1.45em;
+    #pline .ps,
+    #typed {
+      font-family: inherit;
+      font-size: inherit;
+      line-height: 1.45;
+      letter-spacing: inherit;
     }
-    #paint {
+    #pline .ps {
+      flex: 0 0 auto;
+      white-space: pre;
+    }
+    #typed {
+      flex: 0 1 auto;
+      min-width: 0;
       white-space: pre-wrap;
       overflow-wrap: anywhere;
       word-break: break-word;
@@ -274,21 +281,21 @@
     }
     .cur {
       display: inline-block;
-      width: 0.62ch;
-      height: 1.05em;
-      background: var(--text);
-      vertical-align: -0.15em;
-      margin-left: 1px;
+      width: 0.55em;
+      height: 1em;
+      background: currentColor;
+      flex: 0 0 auto;
+      align-self: center;
       animation: cur 1.05s steps(1, end) infinite;
     }
     @keyframes cur {
-      50% { background: transparent; }
+      50% { opacity: 0; }
     }
     .sel {
       background: var(--text);
       color: var(--bg);
     }
-    html:not(.on) .cur { animation: none; background: var(--mute); }
+    html:not(.on) .cur { animation: none; opacity: 1; background: var(--mute); }
 
     @media (prefers-reduced-motion: reduce) {
       .cur { animation: none; }
@@ -298,13 +305,13 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 100%;
-      height: 100%;
-      min-height: 1.45em;
+      width: 1px;
+      height: 1px;
       margin: 0;
       padding: 0;
       border: 0;
       border-radius: 0;
+      opacity: 0;
       background: transparent;
       color: transparent;
       caret-color: transparent;
@@ -320,9 +327,7 @@
     }
 
     @media (pointer: coarse) {
-      #pline { min-height: 44px; align-items: center; }
-      .live { min-height: 44px; }
-      #in { min-height: 44px; }
+      #pline { min-height: 44px; }
     }
 
     #chips {
@@ -431,11 +436,10 @@
         </div>
         <form id="pline" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false">
           <label class="sr" for="in">command</label>
-          <span class="ps" aria-hidden="true">kxz0tn:~$</span>
-          <span class="live">
-            <span id="paint"></span>
-            <input id="in" name="c" type="text" inputmode="text" enterkeyhint="go" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" aria-label="command">
-          </span>
+          <span class="ps" aria-hidden="true">kxz0tn:~$ </span>
+          <span id="typed"></span>
+          <span id="cur" class="cur" aria-hidden="true"></span>
+          <input id="in" name="c" type="text" inputmode="text" enterkeyhint="go" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" aria-label="command">
         </form>
       </div>
       <nav id="chips" aria-label="commands">
@@ -456,7 +460,7 @@
       var log = document.getElementById("log");
       var form = document.getElementById("pline");
       var input = document.getElementById("in");
-      var paint = document.getElementById("paint");
+      var typed = document.getElementById("typed");
       var chips = document.getElementById("chips");
       var clk = document.getElementById("clk");
       var PROMPT = "kxz0tn:~$ ";
@@ -532,15 +536,10 @@
         if (s == null) s = v.length;
         if (e == null) e = s;
         if (s > e) { var tmp = s; s = e; e = tmp; }
-        while (paint.firstChild) paint.removeChild(paint.firstChild);
-        paint.appendChild(document.createTextNode(v.slice(0, s)));
-        if (s === e) {
-          paint.appendChild(el("span", "cur"));
-          paint.appendChild(document.createTextNode(v.slice(e)));
-        } else {
-          paint.appendChild(el("span", "sel", v.slice(s, e)));
-          paint.appendChild(document.createTextNode(v.slice(e)));
-        }
+        while (typed.firstChild) typed.removeChild(typed.firstChild);
+        typed.appendChild(document.createTextNode(v.slice(0, s)));
+        if (s !== e) typed.appendChild(el("span", "sel", v.slice(s, e)));
+        typed.appendChild(document.createTextNode(v.slice(e)));
       }
 
       function printText(text, cls) {
