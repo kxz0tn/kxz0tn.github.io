@@ -238,6 +238,42 @@
       overflow-wrap: anywhere;
     }
 
+    .hlist {
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr);
+      column-gap: 1.25em;
+      row-gap: 0.18rem;
+      align-items: start;
+      margin: 0.15rem 0 0.4rem;
+    }
+    .hrow { display: contents; }
+    .hcmd { white-space: nowrap; }
+    .hdesc {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    .clist {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin: 0.15rem 0 0.4rem;
+    }
+    .crow {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+      min-width: 0;
+    }
+    .cname { white-space: nowrap; }
+    .curl {
+      color: var(--dim);
+      padding-left: 0.8rem;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
     @media (min-width: 700px) {
       .plist {
         display: grid;
@@ -250,6 +286,15 @@
       .phead .pclass,
       .phead .pstate { color: var(--dim); }
       .pclass, .pstate { padding-left: 0; color: inherit; }
+
+      .clist {
+        display: grid;
+        grid-template-columns: 8ch minmax(0, 1fr);
+        column-gap: 1.2rem;
+        row-gap: 0.18rem;
+      }
+      .crow { display: contents; }
+      .curl { padding-left: 0; color: inherit; }
     }
 
     #pline {
@@ -578,22 +623,24 @@
 
       function printContact() {
         label("LINK");
+        var list = el("div", "clist");
+        list.appendChild(contactRow("x", "https://x.com/kxz0tn"));
+        list.appendChild(contactRow("github", "https://github.com/kxz0tn"));
         var block = el("div", "block");
-        block.appendChild(linkLine("x", "https://x.com/kxz0tn"));
-        block.appendChild(linkLine("github", "https://github.com/kxz0tn"));
+        block.appendChild(list);
         log.appendChild(block);
         toEnd();
       }
 
-      function linkLine(name, url) {
-        var line = el("div", "ln");
-        line.appendChild(document.createTextNode(name.padEnd(8)));
-        var a = el("a", "lk", url);
+      function contactRow(name, url) {
+        var row = el("div", "crow");
+        row.appendChild(el("div", "cname", name));
+        var a = el("a", "lk curl", url);
         a.href = url;
         a.target = "_blank";
         a.rel = "noopener noreferrer";
-        line.appendChild(a);
-        return line;
+        row.appendChild(a);
+        return row;
       }
 
       function printProjects() {
@@ -619,20 +666,31 @@
 
       function cmdHelp() {
         label("STREAM");
-        printText(
-          "help              commands\n" +
-          "?                 commands\n" +
-          "whoami            identity\n" +
-          "ls                files\n" +
-          "ls projects       project list\n" +
-          "projects          project list\n" +
-          "cat FILE          ident | motd | projects | log | contact\n" +
-          "open NAME         open a project\n" +
-          "status            utc\n" +
-          "time              utc\n" +
-          "contact           links\n" +
-          "clear             wipe"
-        );
+        var list = el("div", "hlist");
+        var rows = [
+          ["help", "commands"],
+          ["?", "commands"],
+          ["whoami", "identity"],
+          ["ls", "files"],
+          ["ls projects", "project list"],
+          ["projects", "project list"],
+          ["cat FILE", "ident | motd | projects | log | contact"],
+          ["open NAME", "open a project"],
+          ["status", "utc"],
+          ["time", "utc"],
+          ["contact", "links"],
+          ["clear", "wipe"]
+        ];
+        rows.forEach(function (pair) {
+          var row = el("div", "hrow");
+          row.appendChild(el("div", "hcmd", pair[0]));
+          row.appendChild(el("div", "hdesc", pair[1]));
+          list.appendChild(row);
+        });
+        var block = el("div", "block");
+        block.appendChild(list);
+        log.appendChild(block);
+        toEnd();
       }
 
       function cmdLs(args) {
