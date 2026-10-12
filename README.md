@@ -27,6 +27,8 @@ original work, no third-party libraries
 - [neural-forge](https://kxz0tn.github.io/neural-forge/)
 - [aetheris](https://kxz0tn.github.io/aetheris/)
 - [high-trace](https://kxz0tn.github.io/high-trace/)
+- [last-circuit](https://kxz0tn.github.io/last-circuit/)
+- [dock-terminal](https://kxz0tn.github.io/dock-terminal/)
 
 ## license
 
