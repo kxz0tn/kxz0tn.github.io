@@ -1,83 +1,16 @@
-<!--
-  404.html — kxz0tn
-  Original work for kxz0tn. No third-party libraries.
-  MIT License. Copyright (c) 2026 kxz0tn. See LICENSE.
--->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#050506">
-  <title>kxz0tn</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <style>
-    :root {
-      --bg: #050506;
-      --panel: #0b0b0d;
-      --line: #2a2a2e;
-      --text: #e8e8ea;
-      --dim: #8a8a90;
-    }
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      min-height: 100svh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 16px;
-      line-height: 1.45;
-    }
-    body {
-      min-height: 100dvh;
-      padding: max(8px, env(safe-area-inset-top, 0px)) max(8px, env(safe-area-inset-right, 0px)) max(8px, env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px));
-    }
-    #hud {
-      position: relative;
-      min-height: calc(100dvh - 16px);
-      border: 1px solid var(--line);
-      background: var(--panel);
-      padding: 28px 20px;
-    }
-    .c {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      pointer-events: none;
-    }
-    .c-tl { top: -1px; left: -1px; border-top: 1px solid var(--text); border-left: 1px solid var(--text); }
-    .c-tr { top: -1px; right: -1px; border-top: 1px solid var(--text); border-right: 1px solid var(--text); }
-    .c-bl { bottom: -1px; left: -1px; border-bottom: 1px solid var(--text); border-left: 1px solid var(--text); }
-    .c-br { bottom: -1px; right: -1px; border-bottom: 1px solid var(--text); border-right: 1px solid var(--text); }
-    .name {
-      letter-spacing: 0.42em;
-      text-shadow: 0 0 12px rgba(232, 232, 234, 0.28);
-    }
-    .code { margin: 1.2em 0 0.35em; }
-    .msg { color: var(--dim); }
-    a {
-      color: inherit;
-      text-underline-offset: 2px;
-    }
-    a:focus {
-      outline: 1px solid var(--text);
-      outline-offset: 2px;
-    }
-  </style>
-</head>
-<body>
-  <div id="hud">
-    <div class="c c-tl"></div>
-    <div class="c c-tr"></div>
-    <div class="c c-bl"></div>
-    <div class="c c-br"></div>
-    <div class="name">KXZ0TN</div>
-    <div class="code">404</div>
-    <div class="msg">no such path</div>
-    <p><a href="./index.html">https://kxz0tn.github.io</a></p>
-  </div>
-</body>
-</html>
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>404 · kxz0tn</title><meta name="robots" content="noindex"><meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/css/term.css">
+<script src="/js/theme.js"></script></head>
+<body><div class="scan" aria-hidden="true"></div>
+<main class="panes"><section class="pane act"><div class="scroll"><div class="out" role="log">
+<div><span class="d"><span class="sc">kxz0tn</span> ~ &gt; </span><span class="h">cd <span id="p"></span></span></div>
+<div>err: 404: no route: <span id="p2"></span></div><div></div>
+<div class="d">sys: any key → ~</div>
+<div class="line"><span class="ps"><span class="sc">kxz0tn</span> <span class="h">~</span> <span class="pg-gl">&gt;</span></span><span class="field"></span></div>
+</div></div></section></main>
+<footer class="bar" aria-hidden="true"><span class="sc">kxz0tn</span><span>404 · signal lost</span></footer>
+<script src="/js/404.js"></script></body></html>
