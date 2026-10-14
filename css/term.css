@@ -2,7 +2,6 @@
    The layout is a 60-column terminal; the font scales so the same grid fits any width. */
 :root{--bg:#0a0a0a;--fg:#cfcfcf;--hi:#fafafa;--d:#8c8c8c;--rule:#262626;--sel:#2e2e2e;--scan:rgba(255,255,255,.018);--glow:0 0 .45em rgba(255,255,255,.16);--vig:rgba(0,0,0,.45);
   --pad:clamp(12px,2.4vw,26px);--cols:60}
-[data-theme=light]{--bg:#f3f3f3;--fg:#202020;--hi:#000;--d:#565656;--rule:#d0d0d0;--sel:#dcdcdc;--scan:rgba(0,0,0,.022);--glow:none;--vig:rgba(0,0,0,.08)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{font-size:min(14.5px,calc((100vw - 2 * var(--pad)) / (var(--cols) * .61)))}
 html,body{height:100%;background:var(--bg);color:var(--fg)}
@@ -22,8 +21,6 @@ body{font:1rem/1.6 ui-monospace,"Cascadia Mono",Consolas,"SFMono-Regular",Menlo,
 .out .b.sc{font-size:1.3em;letter-spacing:.22em}
 
 /* chrome */
-.tabs{display:flex;gap:2ch;padding:.4em var(--pad);font-size:.82em;color:var(--d);border-bottom:1px solid var(--rule);white-space:nowrap;overflow:hidden}
-.tabs[hidden]{display:none}.tabs .on{color:var(--hi)}
 .bar{display:flex;gap:2.4ch;padding:.4em var(--pad) calc(.4em + env(safe-area-inset-bottom));font-size:.82em;color:var(--d);border-top:1px solid var(--rule);white-space:nowrap;overflow:hidden}
 .sp{flex:1}
 
@@ -45,23 +42,13 @@ body{font:1rem/1.6 ui-monospace,"Cascadia Mono",Consolas,"SFMono-Regular",Menlo,
 .line{display:flex;gap:1ch;white-space:pre}
 .ps{color:var(--d);transition:color .15s}.ps .h{font-weight:700}
 .field{position:relative;flex:1;min-width:0;color:var(--hi);white-space:pre;overflow:hidden}
-.field input,.pal-q input{position:absolute;inset:0;width:100%;opacity:0;font:inherit;font-size:16px;border:0;background:none;color:transparent;caret-color:transparent}
+.field input{position:absolute;inset:0;width:100%;opacity:0;font:inherit;font-size:16px;border:0;background:none;color:transparent;caret-color:transparent}
 .ghost{color:var(--d)}
 .cur{background:var(--fg);color:var(--bg);animation:blink 1.06s steps(1) infinite}
 .cur.typing{animation:none}
 .pane:not(.act) .cur{background:none;outline:1px solid var(--d);animation:none}
 @keyframes blink{50%{background:transparent;color:inherit}}
 
-/* palette */
-.pal{position:fixed;inset:0;z-index:8;background:rgba(0,0,0,.55);display:flex;justify-content:center;align-items:flex-start;padding-top:14vh}
-[data-theme=light] .pal{background:rgba(255,255,255,.6)}
-.pal[hidden]{display:none}
-.pal-box{width:min(40em,92vw);background:var(--bg);border:1px solid var(--d);box-shadow:0 1.4em 4em rgba(0,0,0,.5)}
-.pal:not([hidden]) .pal-box{animation:pal .14s ease-out}@keyframes pal{from{opacity:0;transform:translateY(-6px) scale(.99)}}
-.pal-q{position:relative;padding:.7em 1em;border-bottom:1px solid var(--rule);color:var(--hi);white-space:pre}
-.pal-list>div{padding:.3em 1em;display:flex;gap:2ch;white-space:pre;overflow:hidden}
-.pal-list>div.on{background:var(--sel);color:var(--hi)}
-.pal-list .d{margin-left:auto;overflow:hidden;text-overflow:ellipsis}
 
 /* boot */
 .boot{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.6em;transition:opacity .3s ease}
@@ -72,7 +59,7 @@ body{font:1rem/1.6 ui-monospace,"Cascadia Mono",Consolas,"SFMono-Regular",Menlo,
 .boot .sk{position:absolute;bottom:1.6em;font-size:.76em;letter-spacing:.2em;text-transform:uppercase}
 
 .nos{padding:var(--pad)}
-@media (prefers-reduced-motion:reduce){.scan{display:none}.cur,.rv,.pal:not([hidden]) .pal-box{animation:none}}
+@media (prefers-reduced-motion:reduce){.scan{display:none}.cur,.rv{animation:none}}
 .boot .mk{font-size:4.2em;line-height:1;letter-spacing:.32em;min-height:0;font-weight:700;padding-left:.32em}
 .boot .mk span{transition:opacity .12s}
 .boot .mk.sc{font-variant-caps:all-small-caps}
@@ -101,3 +88,11 @@ input{caret-color:transparent}
 .sc,.ps .sc,.d .sc,.out .sc:not(.b),.bar .sc,.out .d.sc{text-transform:none;font-variant-caps:normal;font-size:1em;letter-spacing:0}
 .out .b.sc{font-size:1.3em;letter-spacing:.2em;text-transform:none}
 .boot .mk.sc{text-transform:none;font-variant-caps:normal;font-size:3.4em;letter-spacing:.3em}
+
+/* v3 single pane */
+.scroll{flex:1;overflow-y:auto;padding:var(--pad);padding-bottom:1em}
+#typed{white-space:pre;color:var(--hi)}#aux{white-space:pre;margin-left:1ch}
+.wm{font-size:1.5em;letter-spacing:.3em;text-transform:lowercase;line-height:1.6}
+.boot.flick{animation:flick .9s steps(1) 1}
+@keyframes flick{0%{opacity:.55}8%{opacity:1}14%{opacity:.7}20%{opacity:1}52%{opacity:.85}56%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.boot.flick{animation:none}}

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
@@ -8,7 +8,7 @@
 <title>kxz0tn</title>
 <meta name="description" content="kxz0tn · Spaceship! | Cross-universe travel. A personal command terminal.">
 <meta name="theme-color" content="#0a0a0a">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:title" content="kxz0tn">
 <meta property="og:description" content="Spaceship! | Cross-universe travel. A personal command terminal.">
@@ -16,24 +16,18 @@
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/term.css">
-<script src="js/theme.js"></script>
 </head>
 <body>
 <div class="scan" aria-hidden="true"></div><div class="vig" aria-hidden="true"></div>
 <div id="boot" class="boot" aria-hidden="true"><div class="mk sc"></div><div class="lg"></div><div class="pg d"></div><div class="sk d">any key to skip</div></div>
-<div id="tabs" class="tabs" aria-hidden="true"></div>
-<main id="panes" class="panes" aria-label="Terminal"></main>
-<div id="pal" class="pal" hidden role="dialog" aria-label="Command palette">
-  <div class="pal-box"><div class="pal-q"><span class="pg-gl">&gt; </span><span id="palq"></span><input id="palin" type="text" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Search commands"></div>
-  <div id="pallist" class="pal-list" role="listbox"></div></div>
-</div>
-<footer class="bar" aria-hidden="true"><span class="sc">kxz0tn</span><span id="bcwd">/</span><span class="sp"></span><span id="bpos"></span><span>UTC <span id="clk">--:--:--</span></span></footer>
-<noscript><p class="nos">JavaScript is off. github.com/<span class="sc">kxz0tn</span></p></noscript>
+<main id="scroll" class="scroll" aria-label="Terminal"><div id="out" class="out" role="log" aria-live="polite"></div><form id="line" class="line" autocomplete="off"><span id="ps" class="ps"></span><span class="field"><span id="typed"></span><span id="aux" class="d"></span><input id="in" type="text" spellcheck="false" autocapitalize="off" autocomplete="off" enterkeyhint="go" aria-label="Command"></span></form></main>
+<footer class="bar" aria-hidden="true"><span>kxz0tn</span><span id="bcwd">/</span><span class="sp"></span><span>UTC <span id="clk">--:--:--</span></span></footer>
+<noscript><p class="nos">JavaScript is off. github.com/<span>kxz0tn</span></p></noscript>
 <script src="js/data.js" defer></script>
 <script src="js/core.js" defer></script>
 <script src="js/modules/files.js" defer></script>
 <script src="js/modules/projects.js" defer></script>
-<script src="js/modules/nav.js" defer></script>
+<script src="js/modules/ring.js" defer></script>
 <script src="js/modules/tools.js" defer></script>
 <script src="js/modules/shell.js" defer></script>
 </body>

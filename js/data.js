@@ -3,7 +3,7 @@
    projects: one entry per project; each becomes /projects/<name> and works with open / map
    sections: folders for long-form content (blog, notes, …). Empty is fine.
    content:  one line per post: { path, src, title, date }. src is a .md/.txt file in /content,
-             loaded when someone runs cat / read. Markdown-ish: # title, - list, > quote, ``` code.
+             loaded when someone runs read. Markdown-ish: # title, - list, > quote, ``` code.
    fs:       extra files and folders. "path/" = folder, "path": [lines] = text file.
              Line formatting: "# title" = bold, "key  value" (2+ spaces) = dim key. */
 window.KX_DATA = {
@@ -27,7 +27,7 @@ window.KX_DATA = {
     { name: "last-circuit", class: "space lessons terminal", state: "LIVE", url: "https://kxz0tn.github.io/last-circuit/" },
     { name: "dock-terminal", class: "public command berth", state: "LIVE", url: "https://kxz0tn.github.io/dock-terminal/" }
   ],
-  sections: ["/blog/"],
+  sections: ["/blog/", "/log/"],
   content: [
     // { path: "/blog/hello.md", src: "content/blog/hello.md", title: "hello", date: "2026-10-14" }
   ],
@@ -36,8 +36,8 @@ window.KX_DATA = {
       "# kxz0tn terminal",
       "help      list commands",
       "ls / cd   move through folders",
-      "cat       read a file",
-      "Ctrl+K    command palette"
+      "read      print a file",
+      "man       manual page · ?  keys"
     ],
     "/about.txt": [
       "handle  kxz0tn",
@@ -47,7 +47,6 @@ window.KX_DATA = {
     "/contact.txt": [
       "x       x.com/kxz0tn",
       "github  github.com/kxz0tn"
-    ],
-    "/logs/": []
+    ]
   }
 };
